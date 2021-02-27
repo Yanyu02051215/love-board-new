@@ -1,0 +1,12 @@
+|  <input name="inputname" type="hidden" value= 
+= @question.id
+|  id ="question_id" /> 
+- if user_signed_in? && !Bookmark.exists?(user_id: current_user.id, question_id: question.id)
+  span.bookmark
+    i.far.fa-bookmark.book
+    |  ブックマーク 
+- elsif user_signed_in?
+  span.bookmark2
+    i.far.fa-bookmark.my-black
+    |  ブックマーク解除 
+- else

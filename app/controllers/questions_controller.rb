@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!,only:[:edit,:new,:create,:update,:destroy]
-  before_action :find_question, only: [:show,:edit,:update,:destroy]
+  before_action :find_question, only: [:edit,:update,:destroy]
   before_action :correct_user, only: [:edit, :update,:destroy]
   impressionist :actions=> [:show]
   def index
@@ -10,6 +10,9 @@ class QuestionsController < ApplicationController
 
   def show
     @reaction = Reaction.new
+    @question = Question.find(params[:id])
+  rescue ActiveRecord::RecordNotFound => e
+    redirect_to :root
   end
 
   def edit

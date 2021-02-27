@@ -1,0 +1,21 @@
+.container
+  |  <ul class="row",style="padding-left: 0px;padding-top: 0px;"> 
+  = render 'questions/sort'
+  - @results.each do |result|
+    li.question-form
+      p.title
+        =link_to(result.title, "/questions/#{result.id}")
+      p
+        =result.created_at.strftime("%Y年%m月%d日")
+      - if result.check_bestanswer
+        i.fas.fa-comment
+        |  解決済み 
+      - else
+        i.far.fa-comment
+        |  回答待ち 
+  .footer-sell-btn-main
+    =link_to new_question_path,class:"footer-write-btn" do
+      p
+        | 新規作成
+      i.fas.fa-pen
+  = paginate @results

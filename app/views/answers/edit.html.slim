@@ -1,0 +1,13 @@
+.container
+  h1
+    = @question.title
+  .padding-bottom-15
+    p.title
+      =@question.body
+    p.text-right
+      =@question.created_at.strftime("%Y年%m月%d日")
+  = form_for @answer do |f|
+    =f.label:body,"回答"
+    .form-group.padding-top-15per
+      =f.text_area:body ,rows: 10,class:'form-control'
+    =f.submit "編集する",class:'btn btn-info'

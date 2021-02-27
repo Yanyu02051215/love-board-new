@@ -1,0 +1,23 @@
+nav.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle.collapsed[type="button" data-toggle="collapse" data-target="#navigation"]
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand[href="/"]
+        | 恋愛質問箱
+    #navigation.collapse.navbar-collapse
+      p.navbar-text.navbar-right
+        - if user_signed_in?
+          - if current_user.image
+            = image_tag "#{current_user.image}" ,class:"icon_image2"
+          - else
+            = image_tag "/images/default.jpg" ,class:"icon_image2"
+          |    
+          = current_user.name
+          | でログイン中   
+          = link_to "ログアウト", destroy_user_session_path, method: :delete
+        - else
+          = link_to 'サインアップ', new_user_registration_path
+          = link_to 'ログイン', new_user_session_path

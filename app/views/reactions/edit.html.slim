@@ -1,0 +1,6 @@
+.container
+  = form_for @reaction do |f|
+    =f.label:body,"返信する"
+    .form-group.padding-top-15per
+      =f.text_area:body ,rows: 1,class:'form-control'
+    =f.submit "編集する",class:'btn btn-info'

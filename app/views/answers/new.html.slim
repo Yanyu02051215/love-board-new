@@ -1,0 +1,17 @@
+.container
+  h1
+    = @question.title
+  .padding-bottom-15
+    p.title
+      =@question.body
+    p.text-right
+      =@question.created_at.strftime("%Y年%m月%d日")
+  = form_for [@question, @answer] do |f|
+    - if @answer.errors.any?
+      - @answer.errors.full_messages.each do |message|
+        div
+          = message
+    =f.label:body
+    .form-group.padding-top-15per
+      =f.text_area:body ,rows: 10,class:'form-control'
+    =f.submit "回答する",class:'btn btn-info'

@@ -1,0 +1,105 @@
+.l-side
+  nav.mypage-nav
+    ul.mypage-nav-list
+      li
+        select.side-select[name="select" onchange="location.href=value;"]
+          option.default[value="#"]
+            | カテゴリー
+          option[value="/questions/lovingexpression/category"]
+            | 愛情表現
+          option[value="/questions/longrangelove/category"]
+            | 遠距離恋愛
+          option[value="/questions/rundown/category"]
+            | 駆け落ち
+          option[value="/questions/koikatsu/category"]
+            | 恋活
+          option[value="/questions/marriage/category"]
+            | 婚活
+          option[value="/questions/triangle/category"]
+            | 三角関係
+          option[value="/questions/jealousy/category"]
+            | 嫉妬
+          option[value="/questions/brokenheart/category"]
+            | 失恋
+          option[value="/questions/workromance/category"]
+            | 職場恋愛
+          option[value="/questions/sexless/category"]
+            | セックスレス
+          option[value="/questions/sex/category"]
+            | セックス
+          option[value="/questions/kiss/category"]
+            | 接吻
+          option[value="/questions/polysexuality/category"]
+            | 多性愛
+          option[value="/questions/date/category"]
+            | デート
+          option[value="/questions/cohabitation/category"]
+            | 同棲
+          option[value="/questions/nampa/category"]
+            | ナンパ
+          option[value="/questions/catastrophic/category"]
+            | 破局
+          option[value="/questions/firstlove/category"]
+            | 初恋
+          option[value="/questions/firstglance/category"]
+            | 一目ぼれ
+          option[value="/questions/dried/category"]
+            | 妾
+          option[value="/questions/concubine/category"]
+            | 略奪愛
+          option[value="/questions/plunderlove/category"]
+            | 両性愛
+          option[value="/questions/affair/category"]
+            | 不倫
+          option[value="/questions/divorce/category"]
+            | 離婚
+        - # <%= link_to "質問カテゴリー", edit_user_path(current_user) ,class:'mypage-nav-list-item' if user_signed_in?
+        i.fas.fa-sort-down
+      li
+        select.side-select[name="select" onchange="location.href=value;"]
+          option.default[value="#"]
+            | 性別
+          option[value="/questions/men/select"]
+            | 男性
+          option[value="/questions/lady/select"]
+            | 女性
+        i.fas.fa-sort-down
+      li
+        select.side-select[name="select" onchange="location.href=value;"]
+          option.default[value="#"]
+            | 年齢
+          option[value="/questions/10later/age"]
+            | 10第後半
+          option[value="/questions/20first/age"]
+            | 20代前半
+          option[value="/questions/20later/age"]
+            | 20代後半
+          option[value="/questions/30first/age"]
+            | 30代前半
+          option[value="/questions/30later/age"]
+            | 30代後半
+          option[value="/questions/40first/age"]
+            | 40代前半
+          option[value="/questions/40later/age"]
+            | 40代後半
+          option[value="/questions/50later/age"]
+            | 50代
+          option[value="/questions/60later/age"]
+            | 60代
+        - # <%= link_to "年代", edit_user_path(current_user) ,class:'mypage-nav-list-item' if user_signed_in?
+        i.fas.fa-sort-down
+      li
+        = link_to "ユーザーランキング", questions_userrank_path(@question) ,class:'mypage-nav-list-item'
+        i.icon-arrow-right
+      li
+        = link_to "人気質問ランキング", questions_rank_path(@question) ,class:'mypage-nav-list-item'
+        i.icon-arrow-right
+      li
+        = link_to "閲覧ランキング", questions_pvrank_path(@question) ,class:'mypage-nav-list-item'
+        i.icon-arrow-right
+      li
+        = link_to "マイページ", user_path(current_user.id) ,class:'mypage-nav-list-item'if user_signed_in?
+        i.icon-arrow-right
+      li
+        = link_to "マイページの編集", edit_user_path(current_user) ,class:'mypage-nav-list-item' if user_signed_in?
+        i.icon-arrow-right

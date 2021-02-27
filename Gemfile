@@ -86,3 +86,5 @@ gem 'jquery-rails'
 gem 'impressionist'
 gem "gretel"
 gem 'rails-i18n'
+gem 'html2slim'
+gem 'slim-rails'

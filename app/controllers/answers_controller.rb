@@ -74,9 +74,9 @@ class AnswersController < ApplicationController
 
   def gard_answer_user
     @question = Question.find(params[:question_id])
-      if @question.user_id == current_user.id
-        redirect_to root_url
-      end
+    if @question.user_id == current_user.id
+      redirect_to root_url
+    end
   end
 end
 

@@ -1,0 +1,30 @@
+- breadcrumb :edit_user
+= render 'questions/breadcrumbs'
+.container
+  h2.text-center
+    | ユーザー編集
+  = form_for(current_user) do |f|
+    .form-group
+      .field-label
+        = f.label :name ,'名前'
+      .field-input
+        = f.text_field :name, autofocus: true  ,class:"form-control"
+    .form-group
+      = f.label :gender ,'性別'
+      br
+      = f.collection_select :gender, Gender.all, :id, :value  , { prompt: '--' }, class:"form-control"
+    .form-group
+      = f.label :gender ,'年代'
+      br
+      = f.collection_select :age, Age.all, :id, :value , { prompt: '--' }, class:"form-control"
+    .form-group
+      .field-label
+        = f.label :email ,'メールアドレス'
+      .field-input
+        = f.email_field :email  ,class:"form-control"
+      .form-group
+        = f.label :image ,"画像",style:'margin-top:10px;'
+        br
+        = f.file_field :image
+    .actions
+      = f.submit "更新", class: 'btn btn-success'

@@ -1,0 +1,4 @@
+.sort
+  = sort_link(@search, :created_at, "作成日順", default_order: :desc)
+  = sort_link(@search, :answers_count, "回答数順", default_order: :desc)
+  = sort_link(@search, :bookmarks_count, "ブックマーク数順" , default_order: :desc)

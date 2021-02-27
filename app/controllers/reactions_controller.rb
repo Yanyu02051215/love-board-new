@@ -11,9 +11,8 @@ class ReactionsController < ApplicationController
     if reaction.save
       redirect_to (question_url(reaction.question))
     else
-      render (question_url(reaction.question))
+      redirect_to question_path(reaction.question.id)
     end
-
   end
 
   def edit
@@ -49,5 +48,4 @@ class ReactionsController < ApplicationController
         redirect_to root_url
       end
   end
-
 end

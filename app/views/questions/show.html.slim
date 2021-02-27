@@ -1,0 +1,121 @@
+.container
+  dialog.is-animate
+    .modal-inner.modal-banner
+      .modal-body
+        .modal-head.bold
+          |  確認 
+        |  本当に削除してもよろしいですか？
+        br
+        |  削除キャンセルも出来ます 
+      .clearfix
+        #close.modal-btn.modal-btn-cancel.close
+          |  キャンセル 
+        form[method="POST" novalidate="novalidate"]
+          input[type="hidden"]
+          =link_to '削除する',question_path(@question),method: :delete,class:'modal-btn modal-btn-submit'
+  .margin-top-5per.artcle-block
+    h1
+      = @question.title
+    .padding-bottom-15
+      p.title
+
+      .username
+        - if @question.user.image
+          = image_tag "#{@question.user.image}" ,class:"icon_image2"
+        - else
+          = image_tag "/images/default.jpg" ,class:"icon_image2"
+        =@question.user.name
+        | さんの質問 
+      .question-body
+        =@question.body
+      p.text-right
+        =@question.created_at.strftime("%Y年%m月%d日")
+    .btn-line
+      - if current_user
+        =link_to '編集',edit_question_path(@question),class:'btn btn-primary',style:'margin-bottom:30px;margin-right:10px;'if @question.user_id == current_user.id
+        - if @question.user_id == current_user.id
+          button#open.btn.btn-danger
+            | 削除
+        =link_to '回答する',new_question_answer_path(@question) ,class:'btn btn-info',style:'margin-bottom:30px;margin-right:10px;'if @question.user_id != current_user.id
+      .bookmark-line
+        = render partial: "bookmarks/bookmark", locals: { question: @question }
+      #sosyal
+        = link_to 'Twitter', "https://twitter.com/share?url=#{request.url}&text=タイトル", class: 'twitter', title: 'Twitter', target: '_blank' if user_signed_in?
+        = link_to 'Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.url}&text=タイトル", class: 'facebook', title: 'Facebook', target: '_blank' if user_signed_in?
+  - if @question.find_bestanswer
+    .bestanswer
+      h3
+        | ベストアンサー
+      .answer-prof
+        - if @question.find_bestanswer.user.image
+          = image_tag "#{@question.find_bestanswer.user.image}" ,class:"icon_image3"
+        - else
+          = image_tag "/images/default.jpg" ,class:"icon_image3"
+        = @question.find_bestanswer.user.name
+      p.answer-body
+        = @question.find_bestanswer.body
+      p.text-right
+        = @question.find_bestanswer.created_at.strftime("%Y年%m月%d日")
+      - @question.find_bestanswer.reactions.each do |reaction|
+        .reactionusername
+          - if @question.user.image
+            = image_tag "#{@question.user.image}" ,class:"icon_image2"
+          - else
+            = image_tag "/images/default.jpg" ,class:"icon_image2"
+          =@question.user.name
+          | さんからの返信 
+        .reactionbody
+          p
+            = reaction.body
+        .reaction-edit
+          - if current_user
+            =link_to "編集",edit_reaction_path(reaction) if reaction.user_id == current_user.id
+            =link_to '削除',reaction_path(reaction),method: :delete,data: {confirm: "削除しますか？"},style:'margin-bottom:10px;,margin-left:10px;' if reaction.user_id == current_user.id
+  ul[style="padding: 0"]
+    - @question.answers.each do |answer|
+      - if answer.is_best == false
+        li.li
+          .thumbnail__caption
+            .answer-prof
+              - if answer.user.image
+                = image_tag "#{answer.user.image}" ,class:"icon_image3"
+              - else
+                = image_tag "/images/default.jpg" ,class:"icon_image3"
+              = answer.user.name
+              | さんの回答 
+            .answer-body
+              = answer.body
+            p.text-right
+              =answer.created_at.strftime("%Y年%m月%d日")
+            - if current_user
+              =link_to "編集",edit_answer_path(answer),class:'btn btn-primary' if answer.user_id == current_user.id
+              =link_to '削除',answer_path(answer),method: :delete,data: {confirm: "削除しますか？"},class:'btn btn-danger answer-delete-button' if answer.user_id == current_user.id
+            - if user_signed_in? && @question.user_id == current_user.id
+              - unless @question.have_bestanswer?
+                = link_to "/answers/#{answer.id}/is_best",method: :post do
+                  button.bestanswer2
+                    i.far.fa-thumbs-up
+                    span
+                      | ベストアンサー
+          - if current_user
+            - if @question.user_id == current_user.id
+              = form_for [answer, @reaction] do |f|
+                =f.label:body,"返信する"
+                .form-group.padding-top-15per
+                  =f.text_area:body ,rows: 1,class:'form-control'
+                =f.submit "返信する",class:'btn btn-info',style:'margin-bottom:30px;margin-right:10px;'
+          - answer.reactions.each do |reaction|
+            .reactionusername
+              - if @question.user.image
+                = image_tag "#{@question.user.image}" ,class:"icon_image2"
+              - else
+                = image_tag "/images/default.jpg" ,class:"icon_image2"
+              =@question.user.name
+              | さんからの返信 
+            .reactionbody
+              p
+                = reaction.body
+            .reaction-edit
+              - if current_user
+                =link_to "編集",edit_reaction_path(reaction) if reaction.user_id == current_user.id
+                - # <%=link_to '削除',reaction_path(reaction),method: :delete,data: {confirm: "削除しますか？"},style:'margin-bottom:10px;,margin-left:10px;' if reaction.user_id == current_user.id

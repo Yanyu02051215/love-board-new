@@ -1,0 +1,13 @@
+.container
+  .col-md-12.margin-top-5per
+    h1.text-center
+      | 質問の編集
+    .padding-bottom-15
+      =form_for @question do |f|
+        =f.label:title,"タイトル"
+        .form-group.padding-top-15per
+          =f.text_field:title ,class:'form-control'
+        =f.label:body,"本文"
+        .form-group.padding-top-15per
+          =f.text_area:body ,rows: 10,class:'form-control'
+        =f.submit "質問編集" ,class:'btn btn-success'

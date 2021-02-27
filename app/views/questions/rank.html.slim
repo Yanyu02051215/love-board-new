@@ -1,0 +1,35 @@
+- breadcrumb :rank_question
+= render 'questions/breadcrumbs'
+= render 'questions/aside'
+= render 'questions/l-side'
+.container
+  |  <ul class="row",style="padding-left: 0px;padding-top: 0px;"> 
+  - @all_ranks.each.with_index(1) do |q, i|
+    li.question-form
+      - if i == 1
+        p.rank
+          i.fas.fa-crown.my-gold
+          |  第
+          = i
+          | 位 
+      - elsif i == 2
+        p.rank
+          i.fas.fa-crown.my-silver
+          |  第
+          = i
+          | 位 
+      - elsif i == 3
+        p.rank
+          i.fas.fa-crown.my-copper
+          |  第
+          = i
+          | 位 
+      - else
+        p.rank
+          |  第
+          = i
+          | 位 
+      p.title
+        =link_to(q.title, "/questions/#{q.id}")
+      p
+        =q.created_at.strftime("%Y年%m月%d日")

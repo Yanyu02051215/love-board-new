@@ -1,0 +1,13 @@
+- breadcrumb :age, @age
+= render 'questions/breadcrumbs'
+= render 'questions/aside'
+= render 'questions/l-side'
+.container
+  |  <ul class="row",style="padding-left: 0px;padding-top: 0px;"> 
+  - @questions.each do |question|
+    - question.each do |q|
+      li.question-form
+        p.title
+          =link_to(q.title, "/questions/#{q.id}")
+        p
+          =q.created_at.strftime("%Y年%m月%d日")
