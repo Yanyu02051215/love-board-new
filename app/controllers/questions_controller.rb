@@ -96,9 +96,9 @@ class QuestionsController < ApplicationController
 
   def correct_user
     @question = Question.find(params[:id])
-      unless @question.user_id == current_user.id
-        redirect_to root_url
-      end
+    unless @question.user_id == current_user.id
+      redirect_to root_url
+    end
   end
 
 end

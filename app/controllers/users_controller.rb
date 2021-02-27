@@ -5,12 +5,7 @@ class UsersController < ApplicationController
   def show
     @questions = current_user.questions.order(created_at: :desc)
     @bookmarks = current_user.bookmarks.order(created_at: :desc)
-
-
-    @question_id = []
-    @bookmarks.each do |bookmark|
-      @question_id << bookmark.question_id
-    end
+    @question_id = @bookmarks.map(&:question_id)
     @bookmark_questions = Question.where(id: @question_id)
     @search = Question.ransack(params[:q])
   end

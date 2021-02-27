@@ -5,55 +5,54 @@
         select.side-select[name="select" onchange="location.href=value;"]
           option.default[value="#"]
             | カテゴリー
-          option[value="/questions/lovingexpression/category"]
-            | 愛情表現
+          / option[value="/questions/lovingexpression/category"]
+          /   | 愛情表現
           option[value="/questions/longrangelove/category"]
             | 遠距離恋愛
-          option[value="/questions/rundown/category"]
-            | 駆け落ち
+          / option[value="/questions/rundown/category"]
+          /   | 駆け落ち
           option[value="/questions/koikatsu/category"]
             | 恋活
           option[value="/questions/marriage/category"]
             | 婚活
-          option[value="/questions/triangle/category"]
-            | 三角関係
-          option[value="/questions/jealousy/category"]
-            | 嫉妬
+          / option[value="/questions/triangle/category"]
+          /   | 三角関係
+          / option[value="/questions/jealousy/category"]
+          /   | 嫉妬
           option[value="/questions/brokenheart/category"]
             | 失恋
           option[value="/questions/workromance/category"]
             | 職場恋愛
-          option[value="/questions/sexless/category"]
-            | セックスレス
-          option[value="/questions/sex/category"]
-            | セックス
-          option[value="/questions/kiss/category"]
-            | 接吻
-          option[value="/questions/polysexuality/category"]
-            | 多性愛
+          / option[value="/questions/sexless/category"]
+          /   | セックスレス
+          / option[value="/questions/sex/category"]
+          /   | セックス
+          / option[value="/questions/kiss/category"]
+          /   | 接吻
+          / option[value="/questions/polysexuality/category"]
+          /   | 多性愛
           option[value="/questions/date/category"]
             | デート
           option[value="/questions/cohabitation/category"]
             | 同棲
-          option[value="/questions/nampa/category"]
-            | ナンパ
+          / option[value="/questions/nampa/category"]
+          /   | ナンパ
           option[value="/questions/catastrophic/category"]
             | 破局
           option[value="/questions/firstlove/category"]
             | 初恋
-          option[value="/questions/firstglance/category"]
-            | 一目ぼれ
-          option[value="/questions/dried/category"]
-            | 妾
-          option[value="/questions/concubine/category"]
-            | 略奪愛
-          option[value="/questions/plunderlove/category"]
-            | 両性愛
+          / option[value="/questions/firstglance/category"]
+          /   | 一目ぼれ
+          / option[value="/questions/dried/category"]
+          /   | 妾
+          / option[value="/questions/concubine/category"]
+          /   | 略奪愛
+          / option[value="/questions/plunderlove/category"]
+          /   | 両性愛
           option[value="/questions/affair/category"]
             | 不倫
           option[value="/questions/divorce/category"]
             | 離婚
-        - # <%= link_to "質問カテゴリー", edit_user_path(current_user) ,class:'mypage-nav-list-item' if user_signed_in?
         i.fas.fa-sort-down
       li
         select.side-select[name="select" onchange="location.href=value;"]
@@ -86,7 +85,6 @@
             | 50代
           option[value="/questions/60later/age"]
             | 60代
-        - # <%= link_to "年代", edit_user_path(current_user) ,class:'mypage-nav-list-item' if user_signed_in?
         i.fas.fa-sort-down
       li
         = link_to "ユーザーランキング", questions_userrank_path(@question) ,class:'mypage-nav-list-item'

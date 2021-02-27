@@ -25,5 +25,4 @@ class Question < ApplicationRecord
     btquestion_id = btquestions.map{|btquestion| btquestion.id }
     btquestion_id.include?(self.id) 
   end
-  
 end
