@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
   impressionist :actions=> [:show]
   def index
     @search = Question.ransack(params[:q])
-    @results = @search.result.page(params[:page]).order(created_at: :desc).per(10)
+    @results = @search.result.page(params[:page]).order(created_at: :desc).per(100)
   end
 
   def show
@@ -49,14 +49,14 @@ class QuestionsController < ApplicationController
   end
 
   def gender
-    @users = User.where(gender: params[:gender])
+    @users = User.where(gender: params[:gender]).includes(:questions)
     @questions = @users.map{|user| user.questions }
     @search = Question.ransack(params[:q])
     @gender = Gender.find(params[:gender]).value
   end
 
   def age
-    @users = User.where(age: params[:age])
+    @users = User.where(age: params[:age]).includes(:questions)
     @questions = @users.map{|user| user.questions }
     @search = Question.ransack(params[:q])
     @age = Age.find(params[:age]).value

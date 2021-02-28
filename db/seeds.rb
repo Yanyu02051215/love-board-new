@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# def question_obj(question)
+#  { title: question.title, body: question.body, user_id: question.user_id, category: "catastrophic" }
+# end
