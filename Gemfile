@@ -88,3 +88,4 @@ gem "gretel"
 gem 'rails-i18n'
 gem 'html2slim'
 gem 'slim-rails'
+gem 'dotenv-rails'
