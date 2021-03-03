@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
   impressionist :actions=> [:show]
   def index
     @search = Question.ransack(params[:q])
-    @results = @search.result.page(params[:page]).order(created_at: :desc).per(100)
+    @results = @search.result.page(params[:page]).order(created_at: :desc).per(10)
   end
 
   def show

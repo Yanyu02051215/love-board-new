@@ -19,10 +19,12 @@ class Question < ApplicationRecord
   end
 
   def check_bestanswer
-    bestanswers = Answer.where(is_best: 1)
-    bestanswer_question_id = bestanswers.map{|bestanswer| bestanswer.question_id }
-    btquestions = Question.where(id: bestanswer_question_id)
-    btquestion_id = btquestions.map{|btquestion| btquestion.id }
-    btquestion_id.include?(self.id) 
+    self.find_bestanswer.present? ? true : false
+
+    # bestanswers = Answer.where(is_best: 1)
+    # bestanswer_question_id = bestanswers.map{|bestanswer| bestanswer.question_id }
+    # btquestions = Question.where(id: bestanswer_question_id)
+    # btquestion_id = btquestions.map{|btquestion| btquestion.id }
+    # btquestion_id.include?(self.id) 
   end
 end
