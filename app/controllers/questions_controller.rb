@@ -6,6 +6,12 @@ class QuestionsController < ApplicationController
   def index
     @search = Question.ransack(params[:q])
     @results = @search.result.page(params[:page]).order(created_at: :desc).per(10)
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data render_to_string, filename: "questions.csv", type: :csv
+      end
+    end
   end
 
   def show

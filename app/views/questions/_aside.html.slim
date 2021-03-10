@@ -4,3 +4,4 @@
       = f.search_field :title_or_body_cont , placeholder: '質問を検索',class:"search-box__text"
       = button_tag type: 'submit', class: "search-box__btn" do
         = icon('fas', 'search')
+      = link_to "CSV", questions_path(format: :csv), class: "btn btn-primary csv-button"
