@@ -58,11 +58,21 @@
         select.side-select[name="select" onchange="location.href=value;"]
           option.default[value="#"]
             | 性別
-          option[value="/questions/men/select"]
-            | 男性
-          option[value="/questions/lady/select"]
-            | 女性
-        i.fas.fa-sort-down
+        = search_form_for @search do |f|
+          = f.search_field :user_gender_cont, value: 'men',class:"search-box__text hidden"
+          = button_tag type: 'submit', class: "side-select left-align" do
+            = '男性'
+        = search_form_for @search do |f|
+          = f.search_field :user_gender_cont, value: 'lady',class:"search-box__text hidden"
+          = button_tag type: 'submit', class: "side-select left-align" do
+            = '女性'
+          / option.default[value="#"]
+          /   | 性別
+        /   option[value="/questions/men/select"]
+        /     | 男性
+        /   option[value="/questions/lady/select"]
+        /     | 女性
+        / i.fas.fa-sort-down
       li
         select.side-select[name="select" onchange="location.href=value;"]
           option.default[value="#"]
